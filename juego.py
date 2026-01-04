@@ -10,6 +10,8 @@ Original file is located at
 # app.py
 import streamlit as st
 import pandas as pd
+import random
+from datetime import datetime
 
 st.set_page_config(page_title="Juego Antifiestas", layout="centered")
 
