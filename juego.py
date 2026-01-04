@@ -37,7 +37,7 @@ df = pd.DataFrame(data)
 # =============================
 if "dia" not in st.session_state:
     st.session_state.dia = 0
-    st.session_state.ahorro = 0
+    st.session_state.ahorro = 0.0
     st.session_state.puntos = 0
     st.session_state.historial = []
 
@@ -53,12 +53,31 @@ if st.session_state.dia >= len(df):
     st.subheader("📊 Historial de ahorro diario")
     st.bar_chart(st.session_state.historial)
 
+    st.divider()
+    st.header("🥠 Galletitas Financieras")
+
+    mensajes = [
+        "💡 Ahorra primero, gasta después.",
+        "📊 Lleva un registro mensual de tus ingresos y gastos.",
+        "💰 Invierte en instrumentos que entiendas.",
+        "🧾 Evita las deudas que no generen valor.",
+        "🎯 Define metas financieras claras y realistas.",
+        "🏦 El interés compuesto premia la paciencia.",
+        "💳 El crédito es herramienta, no ingreso.",
+        "🪙 Construye tu fondo de emergencia.",
+        "📚 La educación financiera paga el mejor interés.",
+        "🧘‍♂️ La disciplina vence al impulso."
+    ]
+
+    if st.button("🍪 Romper una galletita"):
+        st.success(random.choice(mensajes))
+
     st.stop()
 
 # =============================
 # Día actual
 # =============================
-fila = df.loc[st.session_state.dia]
+fila = df.iloc[st.session_state.dia]
 fecha = fila["fecha"].strftime("%d-%m-%Y")
 gasto = fila["gasto_2024"] + fila["gasto_2025"]
 
@@ -95,58 +114,13 @@ st.divider()
 st.metric("💰 Ahorro acumulado", f"${st.session_state.ahorro:,.2f}")
 st.metric("⭐ Puntos", st.session_state.puntos)
 
-# Título principal
-st.title("🥠 Galletitas Financieras 💰")
-st.write("Cada clic revela un consejo financiero para mejorar tus hábitos de ahorro e inversión.")
-
-# Lista de mensajes de buenos hábitos financieros
-mensajes = [
-    "💡 Ahorra primero, gasta después.",
-    "📊 Lleva un registro mensual de tus ingresos y gastos.",
-    "💰 Invierte en instrumentos que entiendas.",
-    "🧾 Evita las deudas que no generen valor.",
-    "🎯 Define metas financieras claras y medibles (sé realista).",
-    "🏦 Aprovecha el interés compuesto: el tiempo es tu mejor aliado.",
-    "💳 No gastes más de lo que ganas, aunque tengas crédito disponible.",
-    "🪙 Separa un 10% de tu ingreso para emergencias.",
-    "📚 La educación financiera es la mejor inversión.",
-    "🏡 Piensa en el futuro: planifica tu retiro desde hoy.",
-    "🧘‍♂️ La estabilidad financiera también es bienestar emocional.",
-    "🌱 Cada pequeño ahorro es una semilla para tu libertad financiera.",
-    "🔍 Antes de invertir, compara rendimientos y riesgos.",
-    "🕐 Sé constante: la disciplina vence al impulso.",
-    "📈 Diversifica tus inversiones, no pongas todos los huevos en la misma canasta.",
-    "🧘‍♂️ Evita las pesadillas financieras, sé diciplinado financieramente.",
-    "📊 El ahorro tiene un propósito, visualízalo para que sea una realidad.",
-    "📊 Identifica tus gastos hormiga, evitandolos se convitirán en inversión.",
-    "💳 El crédito puede ser un aliado, pero se puede comvertir en tu dolor de cabeza.",
-    "💳 Si tienes problemas de compras compulsivas, evita las tarjetas de crédito.",
-    "💰 De cafecito en cafecito, se nos va el dinerito.",
-    "💰 Carga contigo siempre una fruta, agua y un termo de café, tu bolsillo te lo agradecerá.",
-    "🔍 La información disuelve la emoción (conoce tus ingresos y gastos).",
-    "📊 Cuando inviertes en la Bolsa, la paciencia es mejor que la inteligencia.",
-    "📊 Cuida tu dinero: nuestro cerebro no trata al dinero como esfuerzo, sino como emoción y alivio inmediato.",
-    "📊 Cuida tu dinero: el gasto regula emociones (reduce estrés, conpensa cansancio y genera recompensa.",
-    "💳 Tarjeta de Crédito: Compra después del corte y paga antes de la fecha límite.",
-    "💳 Tu Tarjeta de Crédito utilízala como herramienta financiera, no como dinero extra.",
-    
-]
-
-# Botón para obtener una galletita
-if st.button("🍪 Romper una galletita"):
-    mensaje = random.choice(mensajes)
-    st.success(mensaje)
-
-
-# --- Personalización de diseño ---
+# =============================
+# Estilos
+# =============================
 st.markdown("""
 <style>
     .stApp {
-        background-color: #00FF00;
-    }
-    .css-1d391kg {
-        color: #faf7f8;
+        background-color: #f5f7fa;
     }
 </style>
 """, unsafe_allow_html=True)
-
