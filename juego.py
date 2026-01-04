@@ -10,7 +10,6 @@ Original file is located at
 # app.py
 import streamlit as st
 import pandas as pd
-import random
 
 st.set_page_config(page_title="Juego Antifiestas", layout="centered")
 
@@ -37,7 +36,7 @@ df = pd.DataFrame(data)
 # =============================
 if "dia" not in st.session_state:
     st.session_state.dia = 0
-    st.session_state.ahorro = 0.0
+    st.session_state.ahorro = 0
     st.session_state.puntos = 0
     st.session_state.historial = []
 
@@ -53,31 +52,12 @@ if st.session_state.dia >= len(df):
     st.subheader("📊 Historial de ahorro diario")
     st.bar_chart(st.session_state.historial)
 
-    st.divider()
-    st.header("🥠 Galletitas Financieras")
-
-    mensajes = [
-        "💡 Ahorra primero, gasta después.",
-        "📊 Lleva un registro mensual de tus ingresos y gastos.",
-        "💰 Invierte en instrumentos que entiendas.",
-        "🧾 Evita las deudas que no generen valor.",
-        "🎯 Define metas financieras claras y realistas.",
-        "🏦 El interés compuesto premia la paciencia.",
-        "💳 El crédito es herramienta, no ingreso.",
-        "🪙 Construye tu fondo de emergencia.",
-        "📚 La educación financiera paga el mejor interés.",
-        "🧘‍♂️ La disciplina vence al impulso."
-    ]
-
-    if st.button("🍪 Romper una galletita"):
-        st.success(random.choice(mensajes))
-
     st.stop()
 
 # =============================
 # Día actual
 # =============================
-fila = df.iloc[st.session_state.dia]
+fila = df.loc[st.session_state.dia]
 fecha = fila["fecha"].strftime("%d-%m-%Y")
 gasto = fila["gasto_2024"] + fila["gasto_2025"]
 
@@ -113,14 +93,3 @@ else:
 st.divider()
 st.metric("💰 Ahorro acumulado", f"${st.session_state.ahorro:,.2f}")
 st.metric("⭐ Puntos", st.session_state.puntos)
-
-# =============================
-# Estilos
-# =============================
-st.markdown("""
-<style>
-    .stApp {
-        background-color: #f5f7fa;
-    }
-</style>
-""", unsafe_allow_html=True)
