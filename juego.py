@@ -11,7 +11,6 @@ Original file is located at
 import streamlit as st
 import pandas as pd
 import random
-from datetime import datetime
 
 st.set_page_config(page_title="Juego Antifiestas", layout="centered")
 
@@ -137,7 +136,6 @@ mensajes = [
 if st.button("🍪 Romper una galletita"):
     mensaje = random.choice(mensajes)
     st.success(mensaje)
-    st.caption(f"{datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}")
 
 
 # --- Personalización de diseño ---
