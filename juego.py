@@ -11,17 +11,6 @@ Original file is located at
 import streamlit as st
 import pandas as pd
 
-# --- Personalización de diseño ---
-st.markdown("""
-<style>
-    .stApp {
-        background-color: #00FF00;
-    }
-    .css-1d391kg {
-        color: #faf7f8;
-    }
-</style>
-""", unsafe_allow_html=True)
 st.set_page_config(page_title="Juego Antifiestas", layout="centered")
 
 st.title("🎮 Juego Antifiestas")
@@ -104,3 +93,17 @@ else:
 st.divider()
 st.metric("💰 Ahorro acumulado", f"${st.session_state.ahorro:,.2f}")
 st.metric("⭐ Puntos", st.session_state.puntos)
+
+
+# --- Personalización de diseño ---
+st.markdown("""
+<style>
+    .stApp {
+        background-color: #00FF00;
+    }
+    .css-1d391kg {
+        color: #faf7f8;
+    }
+</style>
+""", unsafe_allow_html=True)
+
