@@ -14,7 +14,7 @@ import pandas as pd
 st.set_page_config(page_title="Juego Antifiestas", layout="centered")
 
 st.title("🎮 Juego Antifiestas")
-st.subheader("Evita hoy lo que te hizo gastar antes")
+st.subheader("Evita hoy lo que te hizo gastar antes, además de la resaca de dos días")
 
 # =============================
 # Datos históricos
@@ -64,7 +64,7 @@ gasto = fila["gasto_2024"] + fila["gasto_2025"]
 st.header(f"📅 {fecha}")
 
 if gasto > 0:
-    st.warning(f"🎉 Tentación detectada\n\nCosto histórico: **${gasto:,.2f}**")
+    st.warning(f"🎉 Tentación detectada\n\nCosto histórico (además de la cruda de dos días): **${gasto:,.2f}**")
 
     col1, col2 = st.columns(2)
 
